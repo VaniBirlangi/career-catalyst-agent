@@ -205,16 +205,21 @@ Return ONLY a valid JSON object with this exact structure — no markdown, no ex
   "star_stories": [
     {{"title": "Story title", "angle": "e.g. Organizational scale", "situation": "...", "task": "...", "action": "...", "result": "..."}}
   ],
-  "promotion_bullets": ["Bullet 1", "Bullet 2", "Bullet 3", "Bullet 4"],
+  "promotion_bullets": ["Bullet 1", "Bullet 2"],
   "interview_questions": [
     {{"question": "Question text", "why_relevant": "One sentence", "best_story": "Story title"}}
   ],
-  "data_points": ["Crisp impact sentence 1", "Crisp impact sentence 2", "Crisp impact sentence 3"]
+  "data_points": ["Crisp impact sentence 1"]
 }}
 
-Generate 3 STAR stories (different angles), 4 promotion bullets, 5 interview questions, 3 data points.
-Each question must reference one of the 3 story titles in best_story.
-Use only metrics provided — do not invent numbers."""
+Rules:
+- Generate only as many STAR stories as are genuinely distinct and relevant — different angles only if they add real value. One strong story is better than three weak ones.
+- Generate only promotion bullets that are truly impactful and differentiated. Skip generic ones.
+- Generate only interview questions that are directly and meaningfully relevant to this specific accomplishment.
+- Generate only data points that are crisp, metric-led, and genuinely useful for a year-end review.
+- Each interview question must reference one of the story titles in best_story.
+- Use only metrics provided — do not invent numbers.
+- Quality over quantity in everything."""
 
 def build_yearend_prompt(wins, role, okrs=""):
     wins_text = "\n".join([f"- [{w['impact']}] {w['win']}" for w in wins])
