@@ -205,21 +205,22 @@ Return ONLY a valid JSON object with this exact structure — no markdown, no ex
   "star_stories": [
     {{"title": "Story title", "angle": "e.g. Organizational scale", "situation": "...", "task": "...", "action": "...", "result": "..."}}
   ],
-  "promotion_bullets": ["Bullet 1", "Bullet 2"],
+  "promotion_bullets": ["Bullet 1"],
   "interview_questions": [
     {{"question": "Question text", "why_relevant": "One sentence", "best_story": "Story title"}}
   ],
-  "data_points": ["Crisp impact sentence 1"]
+  "data_points": ["Crisp impact sentence"]
 }}
 
-Rules:
-- Generate only as many STAR stories as are genuinely distinct and relevant — different angles only if they add real value. One strong story is better than three weak ones.
-- Generate only promotion bullets that are truly impactful and differentiated. Skip generic ones.
-- Generate only interview questions that are directly and meaningfully relevant to this specific accomplishment.
-- Generate only data points that are crisp, metric-led, and genuinely useful for a year-end review.
+CRITICAL RULES — follow exactly:
+- DO NOT generate a fixed number of items for any field. Count must be driven entirely by the quality and richness of the accomplishment.
+- star_stories: Generate 1 story unless the accomplishment genuinely has multiple distinct angles. Never exceed 2 unless truly warranted.
+- promotion_bullets: Only generate bullets that are truly impactful and differentiated. 1-2 strong bullets beat 4 generic ones.
+- interview_questions: Only generate questions directly relevant to this specific accomplishment. Do not pad with generic leadership questions.
+- data_points: Only generate crisp metric-led sentences genuinely useful for a year-end review. 1 strong data point beats 3 weak ones.
 - Each interview question must reference one of the story titles in best_story.
 - Use only metrics provided — do not invent numbers.
-- Quality over quantity in everything."""
+- When in doubt, generate less. Quality over quantity."""
 
 def build_yearend_prompt(wins, role, okrs=""):
     wins_text = "\n".join([f"- [{w['impact']}] {w['win']}" for w in wins])
